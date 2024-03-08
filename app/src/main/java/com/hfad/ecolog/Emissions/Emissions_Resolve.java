@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hfad.ecolog.Activity.Main_Menu_Activity;
+import com.hfad.ecolog.Main_Activity.Main_Menu;
 import com.hfad.ecolog.DataBase.MyDbManager;
 import com.hfad.ecolog.R;
 
-public class Emissions_Resolve_Activity extends AppCompatActivity  {
+public class Emissions_Resolve extends AppCompatActivity  {
 
     TextView CarView;
     private MyDbManager myDbManager;
@@ -17,7 +17,7 @@ public class Emissions_Resolve_Activity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.emissions_resolve_activity);
+        setContentView(R.layout.emissions_resolve);
         CarView = findViewById(R.id.CarView);
 
         myDbManager = new MyDbManager(this);
@@ -49,19 +49,19 @@ public class Emissions_Resolve_Activity extends AppCompatActivity  {
         myDbManager.openDb();
         myDbManager.DestroyDb();
         myDbManager.CloseDb();
-        Intent intent = new Intent(this, Emissions_Communal_Activity.class);
+        Intent intent = new Intent(this, Emissions_Communal.class);
         startActivity(intent);
         finish();
     }
 
     public void onClickButtonMainMenu(View view){
-        Intent intent =  new Intent(this, Main_Menu_Activity.class);
+        Intent intent =  new Intent(this, Main_Menu.class);
         startActivity(intent);
         finish();
     }
 
     public void onClickButtonBack(View view){
-        Intent intent =  new Intent(this, Emissions_Car_Activity.class);
+        Intent intent =  new Intent(this, Emissions_Car.class);
         startActivity(intent);
     }
 

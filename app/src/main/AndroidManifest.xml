@@ -13,19 +13,19 @@
         android:theme="@style/Theme.EcoLog"
         tools:targetApi="31">
         <activity
-            android:name=".Emissions.Emissions_Resolve_Activity"
+            android:name=".Emissions.Emissions_Resolve"
             android:exported="false" />
         <activity
-            android:name=".Emissions.Emissions_Car_Activity"
+            android:name=".Emissions.Emissions_Car"
             android:exported="false" />
         <activity
-            android:name=".Emissions.Emissions_Communal_Activity"
+            android:name=".Emissions.Emissions_Communal"
             android:exported="false" />
         <activity
-            android:name=".Activity.Main_Menu_Activity"
+            android:name=".Main_Activity.Main_Menu"
             android:exported="false" />
         <activity
-            android:name=".Activity.Splash_Screen_Activity"
+            android:name=".Main_Activity.Splash_Screen"
             android:exported="true"
             android:noHistory="true">
             <intent-filter>

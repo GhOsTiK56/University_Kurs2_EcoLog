@@ -1,4 +1,4 @@
-package com.hfad.ecolog.Activity;
+package com.hfad.ecolog.Main_Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.hfad.ecolog.Emissions.Emissions_Communal_Activity;
+import com.hfad.ecolog.Emissions.Emissions_Communal;
 import com.hfad.ecolog.DataBase.MyDbManager;
 import com.hfad.ecolog.R;
 
-public class Main_Menu_Activity extends AppCompatActivity {
+public class Main_Menu extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageButton ButtonDrawerToggle;
@@ -29,7 +29,7 @@ public class Main_Menu_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_menu_activity);
+        setContentView(R.layout.main_menu);
         drawerLayout = findViewById(R.id.drawerLayout);
         ButtonDrawerToggle = findViewById(R.id.ButtonDrawerToggle);
         navigationView = findViewById(R.id.navigationView);
@@ -67,7 +67,7 @@ public class Main_Menu_Activity extends AppCompatActivity {
         imageUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Main_Menu_Activity.this, textUserName.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Main_Menu.this, textUserName.getText(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -78,27 +78,27 @@ public class Main_Menu_Activity extends AppCompatActivity {
                 int itemId = menuItem.getItemId();
 
                 if (itemId == R.id.navCalculateEmission){
-                    Toast.makeText(Main_Menu_Activity.this, "Calculation Emission", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Main_Menu_Activity.this, Emissions_Communal_Activity.class);
+                    Toast.makeText(Main_Menu.this, "Calculation Emission", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Main_Menu.this, Emissions_Communal.class);
                     startActivity(intent);
                 }
 
                 if (itemId == R.id.navStatistics){
-                    Toast.makeText(Main_Menu_Activity.this, "Statistics", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Main_Menu.this, "Statistics", Toast.LENGTH_SHORT).show();
                 }
 
                 if (itemId == R.id.navShared){
-                    Toast.makeText(Main_Menu_Activity.this, "Shared", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Main_Menu.this, "Shared", Toast.LENGTH_SHORT).show();
 
                 }
 
                 if (itemId == R.id.navRecommendations){
-                    Toast.makeText(Main_Menu_Activity.this, "Recommendations", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Main_Menu.this, "Recommendations", Toast.LENGTH_SHORT).show();
 
                 }
 
                 if (itemId == R.id.navSettings){
-                    Toast.makeText(Main_Menu_Activity.this, "Settings", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Main_Menu.this, "Settings", Toast.LENGTH_SHORT).show();
 
                 }
                 return false;

@@ -7,18 +7,18 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.hfad.ecolog.Activity.Main_Menu_Activity;
+import com.hfad.ecolog.Main_Activity.Main_Menu;
 import com.hfad.ecolog.DataBase.MyDbManager;
 import com.hfad.ecolog.R;
 
-public class Emissions_Communal_Activity extends AppCompatActivity {
+public class Emissions_Communal extends AppCompatActivity {
     EditText Electricity, Household, NaturalGas, Water;
     private MyDbManager myDbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.emissions_communal_activity);
+        setContentView(R.layout.emissions_communal);
 
         Electricity = findViewById(R.id.Electricity);
         Household = findViewById(R.id.Household);
@@ -67,18 +67,18 @@ public class Emissions_Communal_Activity extends AppCompatActivity {
         myDbManager.updateOrInsertDb(1,Communal);
         myDbManager.CloseDb();
 
-        Intent intent = new Intent(this, Emissions_Car_Activity.class);
+        Intent intent = new Intent(this, Emissions_Car.class);
         startActivity(intent);
         finish();
     }
 
     public void onClickButtonMainMenu(View view){
-        Intent intent =  new Intent(this, Main_Menu_Activity.class);
+        Intent intent =  new Intent(this, Main_Menu.class);
         startActivity(intent);
         finish();
     }
     public void onClickButtonBack(View view){
-        Intent intent =  new Intent(this, Main_Menu_Activity.class);
+        Intent intent =  new Intent(this, Main_Menu.class);
         startActivity(intent);
     }
 }
