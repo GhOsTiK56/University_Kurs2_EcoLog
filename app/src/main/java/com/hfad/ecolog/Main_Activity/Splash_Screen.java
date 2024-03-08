@@ -1,3 +1,8 @@
+/*
+Класс Splash_Screen показывает заставочный экран, затем скрывает его.
+В этом классе реализован 1 метод:
+onCreate - создается поток выполнения, затем запускается цикл показа экрана по времени, все это обернуто в обработчик исключения.
+*/
 package com.hfad.ecolog.Main_Activity;
 
 import android.content.Intent;
@@ -8,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hfad.ecolog.R;
 
 public class Splash_Screen extends AppCompatActivity {
-
     private long ms = 0;
     private final long splashTime = 2000;
     private final boolean splashActive = true;

@@ -1,3 +1,7 @@
+
+
+
+
 package com.hfad.ecolog.Emissions;
 
 import android.content.Intent;
@@ -13,7 +17,7 @@ import com.hfad.ecolog.R;
 
 public class Emissions_Car extends AppCompatActivity {
 
-    EditText KM, Days;
+    private EditText KM, Days;
 
     private MyDbManager myDbManager;
 

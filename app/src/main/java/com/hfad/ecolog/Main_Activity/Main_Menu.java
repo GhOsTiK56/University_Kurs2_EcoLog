@@ -1,3 +1,8 @@
+/*
+Класс Main_Menu главное окно приложения, из которого можно попасть в другие activity и обратно, на него выводятся данные из БД.
+В этом классе реализован 1 метод:
+onCreate - Находятся элементы в UI, затем из БД получаем данные, суммируем их и выводим на экран. Дополнительно если нажать на иконку фото, то выведется надпись.
+*/
 package com.hfad.ecolog.Main_Activity;
 
 import android.os.Bundle;
@@ -12,13 +17,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.hfad.ecolog.DataBase.MyDbManager;
-import com.hfad.ecolog.Drawer.Drawer_manager;
-import com.hfad.ecolog.Drawer.ImageButtonClickListener;
-import com.hfad.ecolog.Drawer.NavigationItemClickListener;
+import com.hfad.ecolog.Drawer.Drawer_Manager;
+import com.hfad.ecolog.Drawer.Image_Button_Click_Listener;
+import com.hfad.ecolog.Drawer.Navigation_Item_Click_Listener;
 import com.hfad.ecolog.R;
 
 public class Main_Menu extends AppCompatActivity {
-    Drawer_manager drawerManager;
+    Drawer_Manager drawerManager;
     DrawerLayout drawerLayout;
     ImageButton ButtonDrawerToggle;
     NavigationView navigationView;
@@ -34,10 +39,10 @@ public class Main_Menu extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationView);
         textEmissions = findViewById(R.id.textEmissions);
 
-        drawerManager = new Drawer_manager(drawerLayout);
+        drawerManager = new Drawer_Manager(drawerLayout);
 
-        ButtonDrawerToggle.setOnClickListener(new ImageButtonClickListener(drawerManager));
-        navigationView.setNavigationItemSelectedListener(new NavigationItemClickListener(this));
+        ButtonDrawerToggle.setOnClickListener(new Image_Button_Click_Listener(drawerManager));
+        navigationView.setNavigationItemSelectedListener(new Navigation_Item_Click_Listener(this));
 
         //Вывод из БД данных
         myDbManager = new MyDbManager(this);

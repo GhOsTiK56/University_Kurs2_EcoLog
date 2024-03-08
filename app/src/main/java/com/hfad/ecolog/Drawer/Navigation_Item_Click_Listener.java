@@ -1,3 +1,8 @@
+/*
+Класс Navigation_Item_Click_Listener обрабатывает нажатием на пункты выдвижного меню.
+В этом классе реализован 1 метод:
+onNavigationItemSelected - Получает ссылку на нажимаемый объект, затем с помощью intent переходит на нужное activity.
+*/
 package com.hfad.ecolog.Drawer;
 
 import static androidx.core.content.ContextCompat.startActivity;
@@ -14,9 +19,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.hfad.ecolog.Emissions.Emissions_Communal;
 import com.hfad.ecolog.R;
 
-public class NavigationItemClickListener implements NavigationView.OnNavigationItemSelectedListener {
+public class Navigation_Item_Click_Listener implements NavigationView.OnNavigationItemSelectedListener {
     private final Context context;
-    public NavigationItemClickListener(Context context){
+    public Navigation_Item_Click_Listener(Context context){
         this.context = context;
     }
 
