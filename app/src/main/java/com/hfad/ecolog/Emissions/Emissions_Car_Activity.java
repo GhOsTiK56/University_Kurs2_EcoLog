@@ -1,9 +1,11 @@
-package com.hfad.ecolog.Activity.Emissions;
-import androidx.appcompat.app.AppCompatActivity;
+package com.hfad.ecolog.Emissions;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.hfad.ecolog.Activity.Main_Menu_Activity;
 import com.hfad.ecolog.DataBase.MyDbManager;

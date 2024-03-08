@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.hfad.ecolog.Activity.Emissions.Emissions_Communal_Activity;
+import com.hfad.ecolog.Emissions.Emissions_Communal_Activity;
 import com.hfad.ecolog.DataBase.MyDbManager;
 import com.hfad.ecolog.R;
 

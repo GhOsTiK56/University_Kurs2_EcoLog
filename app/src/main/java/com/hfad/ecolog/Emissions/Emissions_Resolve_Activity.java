@@ -1,12 +1,10 @@
-package com.hfad.ecolog.Activity.Emissions;
+package com.hfad.ecolog.Emissions;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hfad.ecolog.Activity.Emissions.Emissions_Car_Activity;
-import com.hfad.ecolog.Activity.Emissions.Emissions_Communal_Activity;
 import com.hfad.ecolog.Activity.Main_Menu_Activity;
 import com.hfad.ecolog.DataBase.MyDbManager;
 import com.hfad.ecolog.R;
