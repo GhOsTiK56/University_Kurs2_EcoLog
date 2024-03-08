@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">EcoLog</string>
+    <string name="ButtonContinue">Continue</string>
+    <string name="ButtonConfirm">Confirm</string>
+    <string name="ButtonRecalculate">Recalculate</string>
+    <string name="ButtonMainMenu">Main menu</string>
+
+
+    <string name="TextPresentable">Добро пожаловать в EcoLog!!!!</string>
+
+
+    <string name="Text_Third">Для начала давайте расчитаем ваше потребление по комунальным услугам!
+    Введите следующие данные:</string>
+
+    <string name="Text_Resolve">Сумма ваших выбросов CO2 в тоннах:</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+
+</resources>

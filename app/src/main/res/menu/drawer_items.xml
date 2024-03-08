@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/Group1">
+        <item
+            android:icon="@drawable/icon_menu"
+            android:id="@+id/navCalculateEmission"
+            android:title="Calculate Emission" />
+
+        <item
+            android:icon="@drawable/icon_statistics"
+            android:id="@+id/navStatistics"
+            android:title="Statistics" />
+
+    </group>
+
+    <group
+        android:id="@+id/Group2">
+        <item
+            android:icon="@drawable/icon_shared"
+            android:id="@+id/navShared"
+            android:title="Shared" />
+
+        <item
+            android:icon="@drawable/icon_recomendation"
+            android:id="@+id/navRecommendations"
+            android:title="Recommendations" />
+
+    </group>
+
+    <item
+        android:icon="@drawable/icon_settings"
+        android:id="@+id/navSettings"
+        android:title="Settings" />
+
+</menu>
