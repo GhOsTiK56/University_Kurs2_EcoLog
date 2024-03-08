@@ -15,7 +15,7 @@ import com.hfad.ecolog.Emissions.Emissions_Communal;
 import com.hfad.ecolog.R;
 
 public class NavigationItemClickListener implements NavigationView.OnNavigationItemSelectedListener {
-    private Context context;
+    private final Context context;
     public NavigationItemClickListener(Context context){
         this.context = context;
     }

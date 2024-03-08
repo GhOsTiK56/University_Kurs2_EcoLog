@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyDbManager {
-    private Context context;
-    private MyDbHelper myDbHelper;
+    private final Context context;
+    private final MyDbHelper myDbHelper;
     private SQLiteDatabase db;
 
     public MyDbManager(Context context){

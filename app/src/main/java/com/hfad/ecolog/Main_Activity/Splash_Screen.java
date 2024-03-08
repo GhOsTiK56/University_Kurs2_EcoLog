@@ -10,9 +10,9 @@ import com.hfad.ecolog.R;
 public class Splash_Screen extends AppCompatActivity {
 
     private long ms = 0;
-    private long splashTime = 2000;
-    private boolean splashActive = true;
-    private boolean paused = false;
+    private final long splashTime = 2000;
+    private final boolean splashActive = true;
+    private final boolean paused = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class Splash_Screen extends AppCompatActivity {
                             ms = ms+100;
                         sleep(100); // Вот тут может быть исключение
                     }
-                } catch (Exception e){} // Здесь происходит обработка исключений, в данном случае она пуста, чтобы просто ингорить исключение
+                } catch (Exception ignored){} // Здесь происходит обработка исключений, в данном случае она пуста, чтобы просто ингорить исключение
                 finally {
                     Intent intent = new Intent(Splash_Screen.this, Main_Menu.class);
                     startActivity(intent);

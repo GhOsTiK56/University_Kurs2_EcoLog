@@ -5,7 +5,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 public class Drawer_manager {
 
-    private DrawerLayout drawerLayout;
+    private final DrawerLayout drawerLayout;
 
     public Drawer_manager(DrawerLayout drawerLayout){
         this.drawerLayout = drawerLayout;

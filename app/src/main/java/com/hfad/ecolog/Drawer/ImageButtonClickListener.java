@@ -3,7 +3,7 @@ package com.hfad.ecolog.Drawer;
 import android.view.View;
 
 public class ImageButtonClickListener implements View.OnClickListener {
-    private Drawer_manager drawerManager;
+    private final Drawer_manager drawerManager;
 
     public ImageButtonClickListener(Drawer_manager drawerManager) {
         this.drawerManager = drawerManager;
