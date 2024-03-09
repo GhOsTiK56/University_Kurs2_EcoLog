@@ -20,6 +20,13 @@ public class MyDbHelper extends SQLiteOpenHelper { //SQLiteOpenHelper - вспо
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {//Обновление БД, сначала удаляем старую, затем создаем новую
+        if (oldVersion == 1){
+            //Прописываем, что будет если версия равна 1
+        }
+
+        if (oldVersion < 3){
+            //Прописываем, что будет если версия 1 или 2
+        }
         db.execSQL(MyConstants.DROP_TABLE);
         onCreate(db);
     }

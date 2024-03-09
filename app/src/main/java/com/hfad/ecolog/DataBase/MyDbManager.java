@@ -9,17 +9,11 @@ ReadFromDb - Читает базу данных и возвращает в ви�
 CloseDb - Закрывает базу данных.
 DestroyDb - Уничтожает полностью всю базу данных со всеми значениями.
 */
-
 package com.hfad.ecolog.DataBase;
-import android.annotation.SuppressLint;
+
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MyDbManager {
     private final Context context;
@@ -34,12 +28,22 @@ public class MyDbManager {
         db = myDbHelper.getWritableDatabase(); // Функция для записи в базу данных
     }
 
-    public void insertDb(float num){ // Добавляем в базу данных
+    public void insertToDbEmailPassword(String Email, String Password){
         ContentValues cv = new ContentValues();
-        cv.put(MyConstants.VALUE, num);// затем положили данные в объект (num)
+        cv.put(MyConstants.EMAIL, Email);
+        cv.put(MyConstants.PASSWORD, Password);
         db.insert(MyConstants.TABLE_NAME, null, cv);
     }
-    public void updateOrInsertDb(int id, float num) { //Обновляем существующую запись с указанным идентификатором id, иначе вставляем новую
+
+    public void insertToDbEmissions(float E_Communal, float E_Car, float E_Resolve){ // Добавляем в базу данных
+        ContentValues cv = new ContentValues();
+        cv.put(MyConstants.E_COMMUNAL, E_Communal);// затем положили данные в объект в поле E_COMMUNAL значение value
+        cv.put(MyConstants.E_CAR, E_Car);
+        cv.put(MyConstants.E_RESOLVE, E_Resolve);
+        db.insert(MyConstants.TABLE_NAME, null, cv);
+    }
+
+/*    public void UpdateOrInsertDbEmissions(int id, float num) { //Обновляем существующую запись с указанным идентификатора id, иначе вставляем новую
         ContentValues cv = new ContentValues();
         cv.put(MyConstants._ID, id); // Необходимо вставить _id
         cv.put(MyConstants.VALUE, num);
@@ -57,7 +61,7 @@ public class MyDbManager {
         if (cursor.getCount() > 0) {// Если запись существует, обновляем её
             updateDb(id, num);
         } else {// Если записи не существует, добавляем новую
-            insertDb(num);
+            insertToDbEmissions(num);
         }
         cursor.close();
     }
@@ -89,7 +93,7 @@ public class MyDbManager {
         }
         cursor.close();
         return tempList;
-    }
+    }*/
 
     public void CloseDb(){ //Закрываем базу данных
         myDbHelper.close();

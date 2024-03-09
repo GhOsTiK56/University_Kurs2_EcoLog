@@ -1,16 +1,17 @@
 package com.hfad.ecolog.Emissions;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hfad.ecolog.Main_Activity.Main_Menu;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.hfad.ecolog.DataBase.MyDbManager;
+import com.hfad.ecolog.Main_Activity.Main_Menu;
 import com.hfad.ecolog.R;
 
 public class Emissions_Resolve extends AppCompatActivity  {
-
     TextView CarView;
     private MyDbManager myDbManager;
 
@@ -20,35 +21,27 @@ public class Emissions_Resolve extends AppCompatActivity  {
         setContentView(R.layout.emissions_resolve);
         CarView = findViewById(R.id.CarView);
 
+        Intent intent = getIntent();
+        float defaultValue = 0.0F;
+        float E_Communal = intent.getFloatExtra("E_Communal", defaultValue);
+        float E_Car = intent.getFloatExtra("E_Car", defaultValue);
+
         myDbManager = new MyDbManager(this);
 
-        myDbManager.openDb();
-        float sum = 0.0F;
-        if(myDbManager.ReadFromDb().isEmpty())
-            CarView.append("0");
+        float E_Resolve = E_Communal + E_Car;
+        CarView.append(Float.toString(E_Resolve));
 
-        else{
-            for(String num :myDbManager.ReadFromDb()){
-                float Value = Float.parseFloat(num);
-                sum += Value;
-                if (!num.equals("0")){
-                    CarView.append(num);
-                    CarView.append("\n");
-                }
-                else {
-                    CarView.append("0");
-                    CarView.append("\n");
-                }
-            }
-            CarView.append("Сумма ваших выбросов CO2 в тоннах: " + "\n" + String.valueOf(sum)) ;
-            myDbManager.CloseDb();
-        }
+        myDbManager.openDb();
+        myDbManager.insertToDbEmissions(E_Communal, E_Car, E_Resolve);
+
+
+        myDbManager.CloseDb();
     }
 
     public void onClickButtonRecalculate(View view){
-        myDbManager.openDb();
-        myDbManager.DestroyDb();
-        myDbManager.CloseDb();
+        //myDbManager.openDb();
+        //myDbManager.DestroyDb(); //Здесь я полностью удалю базу, это неверно, надо перезаписать данные в поля
+        //myDbManager.CloseDb();
         Intent intent = new Intent(this, Emissions_Communal.class);
         startActivity(intent);
         finish();
@@ -63,6 +56,6 @@ public class Emissions_Resolve extends AppCompatActivity  {
     public void onClickButtonBack(View view){
         Intent intent =  new Intent(this, Emissions_Car.class);
         startActivity(intent);
+        finish();
     }
-
 }

@@ -8,12 +8,10 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hfad.ecolog.Main_Activity.Main_Menu;
-import com.hfad.ecolog.DataBase.MyDbManager;
 import com.hfad.ecolog.R;
 
 public class Emissions_Communal extends AppCompatActivity {
     EditText Electricity, Household, NaturalGas, Water;
-    private MyDbManager myDbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +22,6 @@ public class Emissions_Communal extends AppCompatActivity {
         Household = findViewById(R.id.Household);
         NaturalGas = findViewById(R.id.NaturalGas);
         Water = findViewById(R.id.Water);
-
-        myDbManager = new MyDbManager(this);
     }
     public void onClickButton(View view){
 
@@ -52,7 +48,7 @@ public class Emissions_Communal extends AppCompatActivity {
         float _Household1 = _Household * 10.55F;
         float _Household2 = (_Household1 * 0.18F) / 1000;
 
-        //Расчет выбпросов за отопление, данные вводить в кубометрах
+        //Расчет выбросов за отопление, данные вводить в кубометрах
         float _NaturalGas1 = _NaturalGas * 10.55F; // Переводим из кубометров в кВт
         float _NaturalGas2 = (_NaturalGas1 * 0.18F) / 1000;
 
@@ -63,11 +59,8 @@ public class Emissions_Communal extends AppCompatActivity {
         //Сумма коммуналки
         float Communal = _Electricity3 + _Household2 + _NaturalGas2 + _Water2;
 
-        myDbManager.openDb();//Открыли таблицу
-        myDbManager.updateOrInsertDb(1,Communal);
-        myDbManager.CloseDb();
-
         Intent intent = new Intent(this, Emissions_Car.class);
+        intent.putExtra("E_Communal", Communal);
         startActivity(intent);
         finish();
     }
@@ -77,8 +70,10 @@ public class Emissions_Communal extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     public void onClickButtonBack(View view){
-        Intent intent =  new Intent(this, Main_Menu.class);
+        Intent intent =  new Intent(this, Main_Menu.class); //Поправить кнопку назад
         startActivity(intent);
+        finish();
     }
 }

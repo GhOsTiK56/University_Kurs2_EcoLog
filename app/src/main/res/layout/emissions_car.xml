@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/KM"
+        android:id="@+id/Kilometrs"
         android:layout_width="227dp"
         android:layout_height="59dp"
         android:layout_marginTop="176dp"

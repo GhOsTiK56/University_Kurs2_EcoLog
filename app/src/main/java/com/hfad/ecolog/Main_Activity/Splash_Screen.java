@@ -32,7 +32,7 @@ public class Splash_Screen extends AppCompatActivity {
                     }
                 } catch (Exception ignored){} // Здесь происходит обработка исключений, в данном случае она пуста, чтобы просто ингорить исключение
                 finally {
-                    Intent intent = new Intent(Splash_Screen.this, Main_Menu.class);
+                    Intent intent = new Intent(Splash_Screen.this, Registration_Window.class);
                     startActivity(intent);
                 }
             }

@@ -4,11 +4,16 @@
     <string name="ButtonConfirm">Confirm</string>
     <string name="ButtonRecalculate">Recalculate</string>
     <string name="ButtonMainMenu">Main menu</string>
+    <string name="ButtonEnter">Войти</string>
+    <string name="ButtonRegistration">Зарегистрироваться</string>
+    <string name="EditEmail">Введите Email</string>
+    <string name="EditPassword">Введите пароль</string>
+    <string name="EditName">Введите имя</string>
+    <string name="EditTele">Введите номер телефона</string>
+
 
 
     <string name="TextPresentable">Добро пожаловать в EcoLog!!!!</string>
-
-
     <string name="Text_Third">Для начала давайте насчитаем ваше потребление по коммунальным услугам!
     Введите следующие данные:</string>
 

@@ -48,17 +48,17 @@ public class Main_Menu extends AppCompatActivity {
         myDbManager = new MyDbManager(this);
         myDbManager.openDb();
         float sum = 0.0F;
-        if(myDbManager.ReadFromDb().isEmpty())
-            textEmissions.append("0");
+/*        if(myDbManager.ReadFromDb().isEmpty())
+            textEmissions.append("0");*/
 
-        else{
+        /*else{
             for(String num :myDbManager.ReadFromDb()){
                 float Value = Float.parseFloat(num);
                 sum += Value;
             }
             textEmissions.append(String.valueOf(sum)) ;
             myDbManager.CloseDb();
-        }
+        }*/
 
         //Если жмакаем на фотку то выведется надпись
         View headerView = navigationView.getHeaderView(0);
