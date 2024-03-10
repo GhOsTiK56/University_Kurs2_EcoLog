@@ -13,7 +13,9 @@ package com.hfad.ecolog.DataBase;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class MyDbManager {
     private final Context context;
@@ -24,76 +26,90 @@ public class MyDbManager {
         this.context = context; //Передаем контекст
         myDbHelper = new MyDbHelper(context); //Создаем объект MyDbHelper для создания и управления базой данных
     }
-    public void openDb(){ //Открываем базу данных
+    public void OpenDb(){ //Открываем базу данных
         db = myDbHelper.getWritableDatabase(); // Функция для записи в базу данных
     }
 
-    public void insertToDbEmailPassword(String Email, String Password){
+    public void insertToDbUsers(String Email, String Password, String Name, String Phone){
         ContentValues cv = new ContentValues();
         cv.put(MyConstants.EMAIL, Email);
         cv.put(MyConstants.PASSWORD, Password);
+        cv.put(MyConstants.NAME, Name);
+        cv.put(MyConstants.PHONE, Phone);
         db.insert(MyConstants.TABLE_NAME, null, cv);
     }
 
-    public void insertToDbEmissions(float E_Communal, float E_Car, float E_Resolve){ // Добавляем в базу данных
+    public void insertToDbEmissions(String email, float E_Communal, float E_Car, float E_Resolve){ // Добавляем в базу данных
         ContentValues cv = new ContentValues();
         cv.put(MyConstants.E_COMMUNAL, E_Communal);// затем положили данные в объект в поле E_COMMUNAL значение value
         cv.put(MyConstants.E_CAR, E_Car);
         cv.put(MyConstants.E_RESOLVE, E_Resolve);
-        db.insert(MyConstants.TABLE_NAME, null, cv);
+
+        db.update(MyConstants.TABLE_NAME, cv, MyConstants.EMAIL + " = ?", new String[]{email});
     }
 
-/*    public void UpdateOrInsertDbEmissions(int id, float num) { //Обновляем существующую запись с указанным идентификатора id, иначе вставляем новую
-        ContentValues cv = new ContentValues();
-        cv.put(MyConstants._ID, id); // Необходимо вставить _id
-        cv.put(MyConstants.VALUE, num);
+    public boolean checkUserRegistrationExists(String Email){
+        String[] columns = {MyConstants.EMAIL};
+        String selection = MyConstants.EMAIL + " = ?";
+        String[] selectionArgs = {Email};
+        boolean exists = false;
 
-        Cursor cursor = db.query(
-                MyConstants.TABLE_NAME,
-                null,
-                MyConstants._ID + " = ?",
-                new String[]{String.valueOf(id)},
-                null,
-                null,
-                null
-        );
-
-        if (cursor.getCount() > 0) {// Если запись существует, обновляем её
-            updateDb(id, num);
-        } else {// Если записи не существует, добавляем новую
-            insertToDbEmissions(num);
+        if (db != null && db.isOpen()){
+            Cursor cursor = db.query(MyConstants.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+            if (cursor != null) {
+                exists = cursor.moveToFirst(); // Проверяем, есть ли какие-либо результаты в курсоре
+                cursor.close();
+            }
         }
-        cursor.close();
+        else {
+            Log.e("MyDbManager", "Database is not opened or initialized properly");
+        }
+        return exists;
     }
 
-    public void updateDb(int id, float num) { //Обновляем запись в базе данных с указанием нужно поля
-        ContentValues cv = new ContentValues();
-        cv.put(MyConstants.VALUE, num);
-        String selection = MyConstants._ID + " = ?";
-        String[] selectionArgs = { String.valueOf(id) };
-        int count = db.update(
-                MyConstants.TABLE_NAME,
-                cv,
-                selection,
-                selectionArgs);
-        if (count == 0) {
-            Toast.makeText(context, "Нет данных для обновления", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Данные обновлены", Toast.LENGTH_SHORT).show();
+    public boolean checkUserSignInExists(String email, String password){
+        String[] columns = {MyConstants.EMAIL};
+        String selection = MyConstants.EMAIL + " = ? AND " + MyConstants.PASSWORD + " = ?";
+        String[] selectionArgs = {email, password};
+        boolean exists = false;
+
+        if (db != null && db.isOpen()){
+            Log.d("MyDbManager", "Attempting to query database...");
+            Cursor cursor = db.query(MyConstants.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+
+            if (cursor != null) {
+                exists = cursor.moveToFirst(); // Проверяем, есть ли какие-либо результаты в курсоре
+                cursor.close();
+            }
         }
+        else {
+            Log.e("MyDbManager", "Database is not opened or initialized properly");
+        }
+        return exists;
     }
 
-    public List<String> ReadFromDb(){ // Читаем базу данных и возвращаем в виде списка
-        List<String> tempList = new ArrayList<>();
-        Cursor cursor = db.query(MyConstants.TABLE_NAME, null, null, null, null, null, null);
+    public float getEResolveForUser(String email) {
+        String[] columns = {MyConstants.E_RESOLVE};
+        String selection = MyConstants.EMAIL + "=?";
+        String[] selectionArgs = {email};
 
-        while(cursor.moveToNext()){
-            @SuppressLint("Range") String num = cursor.getString(cursor.getColumnIndex(MyConstants.VALUE));
-            tempList.add(num);
+        Cursor cursor = db.query(MyConstants.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+        float eResolveValue = 0.0F;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int eResolveIndex = cursor.getColumnIndex(MyConstants.E_RESOLVE);
+            if (eResolveIndex != -1) {
+                if (!cursor.isNull(eResolveIndex)) {
+                    eResolveValue = cursor.getFloat(eResolveIndex);
+                }
+            }
+            cursor.close();
         }
-        cursor.close();
-        return tempList;
-    }*/
+
+        return eResolveValue;
+    }
+
+
 
     public void CloseDb(){ //Закрываем базу данных
         myDbHelper.close();

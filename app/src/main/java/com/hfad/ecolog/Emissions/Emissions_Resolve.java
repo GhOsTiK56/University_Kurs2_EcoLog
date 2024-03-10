@@ -25,23 +25,21 @@ public class Emissions_Resolve extends AppCompatActivity  {
         float defaultValue = 0.0F;
         float E_Communal = intent.getFloatExtra("E_Communal", defaultValue);
         float E_Car = intent.getFloatExtra("E_Car", defaultValue);
+        String email = intent.getStringExtra("Email");
 
         myDbManager = new MyDbManager(this);
 
         float E_Resolve = E_Communal + E_Car;
         CarView.append(Float.toString(E_Resolve));
 
-        myDbManager.openDb();
-        myDbManager.insertToDbEmissions(E_Communal, E_Car, E_Resolve);
+        myDbManager.OpenDb();
+        myDbManager.insertToDbEmissions(email, E_Communal, E_Car, E_Resolve);
 
 
         myDbManager.CloseDb();
     }
 
     public void onClickButtonRecalculate(View view){
-        //myDbManager.openDb();
-        //myDbManager.DestroyDb(); //Здесь я полностью удалю базу, это неверно, надо перезаписать данные в поля
-        //myDbManager.CloseDb();
         Intent intent = new Intent(this, Emissions_Communal.class);
         startActivity(intent);
         finish();

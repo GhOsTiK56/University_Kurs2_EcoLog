@@ -5,6 +5,7 @@ onCreate - Находятся элементы в UI, затем из БД по�
 */
 package com.hfad.ecolog.Main_Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -40,31 +41,30 @@ public class Main_Menu extends AppCompatActivity {
         textEmissions = findViewById(R.id.textEmissions);
 
         drawerManager = new Drawer_Manager(drawerLayout);
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("Email");
 
         ButtonDrawerToggle.setOnClickListener(new Image_Button_Click_Listener(drawerManager));
-        navigationView.setNavigationItemSelectedListener(new Navigation_Item_Click_Listener(this));
+        navigationView.setNavigationItemSelectedListener(new Navigation_Item_Click_Listener(this, email));
+
+
 
         //Вывод из БД данных
         myDbManager = new MyDbManager(this);
-        myDbManager.openDb();
-        float sum = 0.0F;
-/*        if(myDbManager.ReadFromDb().isEmpty())
-            textEmissions.append("0");*/
+        myDbManager.OpenDb();
 
-        /*else{
-            for(String num :myDbManager.ReadFromDb()){
-                float Value = Float.parseFloat(num);
-                sum += Value;
-            }
-            textEmissions.append(String.valueOf(sum)) ;
-            myDbManager.CloseDb();
-        }*/
+        float E_Resolve =  myDbManager.getEResolveForUser(email);
+
+        textEmissions.setText(String.valueOf(E_Resolve));
+
 
         //Если жмакаем на фотку то выведется надпись
         View headerView = navigationView.getHeaderView(0);
         ImageView imageUserPhoto = headerView.findViewById(R.id.imageUserPhoto);
         TextView textUserName = headerView.findViewById(R.id.textUserName);
 
+
+        myDbManager.CloseDb();
         imageUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

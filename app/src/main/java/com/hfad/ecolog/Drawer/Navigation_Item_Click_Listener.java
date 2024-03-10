@@ -21,8 +21,10 @@ import com.hfad.ecolog.R;
 
 public class Navigation_Item_Click_Listener implements NavigationView.OnNavigationItemSelectedListener {
     private final Context context;
-    public Navigation_Item_Click_Listener(Context context){
+    private final String email;
+    public Navigation_Item_Click_Listener(Context context, String email){
         this.context = context;
+        this.email = email;
     }
 
     @Override
@@ -32,27 +34,44 @@ public class Navigation_Item_Click_Listener implements NavigationView.OnNavigati
         if (itemId == R.id.navCalculateEmission){
             Toast.makeText(context, "Calculation Emission", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, Emissions_Communal.class);
+            intent.putExtra("Email", email);
             startActivity(context, intent, new Bundle());
+
+
         }
 
         if (itemId == R.id.navStatistics){
             Toast.makeText(context, "Statistics", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, Emissions_Communal.class);
+            intent.putExtra("Email", email);
+
         }
 
         if (itemId == R.id.navShared){
             Toast.makeText(context, "Shared", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, Emissions_Communal.class);
+            intent.putExtra("Email", email);
 
         }
 
         if (itemId == R.id.navRecommendations){
             Toast.makeText(context, "Recommendations", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, Emissions_Communal.class);
+            intent.putExtra("Email", email);
+
 
         }
 
         if (itemId == R.id.navSettings){
             Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, Emissions_Communal.class);
+            intent.putExtra("Email", email);
 
         }
         return true;
     }
+
+
+
+
 }

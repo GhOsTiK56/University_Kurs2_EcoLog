@@ -35,10 +35,12 @@ public class Emissions_Car extends AppCompatActivity {
 
         Intent intent1 = getIntent();
         float E_Communal = intent1.getFloatExtra("E_Communal", defaultValue);
+        String email = intent1.getStringExtra("Email");
 
         Intent intent2 = new Intent(this, Emissions_Resolve.class);
         intent2.putExtra("E_Car", Car3);
         intent2.putExtra("E_Communal", E_Communal);
+        intent2.putExtra("Email", email);
         startActivity(intent2);
         finish();
     }
