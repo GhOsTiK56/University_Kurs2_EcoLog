@@ -25,7 +25,7 @@ public class Emissions_Resolve extends AppCompatActivity  {
         float defaultValue = 0.0F;
         float E_Communal = intent.getFloatExtra("E_Communal", defaultValue);
         float E_Car = intent.getFloatExtra("E_Car", defaultValue);
-        String email = intent.getStringExtra("Email");
+        String UserId = intent.getStringExtra("UserId");
 
         myDbManager = new MyDbManager(this);
 
@@ -33,7 +33,7 @@ public class Emissions_Resolve extends AppCompatActivity  {
         CarView.append(Float.toString(E_Resolve));
 
         myDbManager.OpenDb();
-        myDbManager.insertToDbEmissions(email, E_Communal, E_Car, E_Resolve);
+        myDbManager.insertToDbEmissions(UserId, E_Communal, E_Car, E_Resolve);
 
 
         myDbManager.CloseDb();

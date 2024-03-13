@@ -42,10 +42,10 @@ public class Main_Menu extends AppCompatActivity {
 
         drawerManager = new Drawer_Manager(drawerLayout);
         Intent intent = getIntent();
-        String email = intent.getStringExtra("Email");
+        String UserId = intent.getStringExtra("UserId");
 
         ButtonDrawerToggle.setOnClickListener(new Image_Button_Click_Listener(drawerManager));
-        navigationView.setNavigationItemSelectedListener(new Navigation_Item_Click_Listener(this, email));
+        navigationView.setNavigationItemSelectedListener(new Navigation_Item_Click_Listener(this, UserId));
 
 
 
@@ -53,7 +53,7 @@ public class Main_Menu extends AppCompatActivity {
         myDbManager = new MyDbManager(this);
         myDbManager.OpenDb();
 
-        float E_Resolve =  myDbManager.getEResolveForUser(email);
+        float E_Resolve =  myDbManager.getEResolveForUser(UserId);
 
         textEmissions.setText(String.valueOf(E_Resolve));
 

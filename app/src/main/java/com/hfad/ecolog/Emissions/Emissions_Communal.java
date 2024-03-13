@@ -60,11 +60,11 @@ public class Emissions_Communal extends AppCompatActivity {
         float Communal = _Electricity3 + _Household2 + _NaturalGas2 + _Water2;
 
         Intent intent1 = getIntent();
-        String email = intent1.getStringExtra("Email");
+        String UserId = intent1.getStringExtra("UserId");
 
         Intent intent = new Intent(this, Emissions_Car.class);
         intent.putExtra("E_Communal", Communal);
-        intent.putExtra("Email", email);
+        intent.putExtra("UserId", UserId);
         startActivity(intent);
         finish();
     }

@@ -22,6 +22,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.hfad.ecolog.DataBase.MyDbManager;
 import com.hfad.ecolog.R;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class Registration_Window extends AppCompatActivity {
     Button ButtonEnter, ButtonRegistration;
     MyDbManager myDbManager;
@@ -46,12 +49,12 @@ public class Registration_Window extends AppCompatActivity {
         ButtonEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSighInWindow();
+                showSignInWindow();
             }
         });
     }
 
-    private void showSighInWindow(){
+    private void showSignInWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Войти"); //Заголовок окна
         dialog.setMessage("Введите все данные для входа"); //Небольшая подпись под заголовком
@@ -84,24 +87,41 @@ public class Registration_Window extends AppCompatActivity {
                 }
 
                 myDbManager.OpenDb();
+                String inputEmail = email.getText().toString();
+                String inputPassword = password.getText().toString();
+                try {
 
-                if(myDbManager.checkUserSignInExists(email.getText().toString(), password.getText().toString())){
-                    Toast.makeText(root.getContext(), "Вы успешно авторизовались", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Registration_Window.this, Main_Menu.class);
-                    intent.putExtra("Email", email.getText().toString());
-                    startActivity(intent);
-                    finish();
-                }
-                else{
-                    Toast.makeText(root.getContext(), "Ошибка авторизации", Toast.LENGTH_SHORT).show();
-                }
+                    String userId = myDbManager.getUserIdForEmail(inputEmail);
 
-                myDbManager.CloseDb();
+
+                    if (TextUtils.isEmpty(userId)){
+                        // Пользователь с указанным email не найден или пароль отсутствует
+                        Toast.makeText(root.getContext(), "Пользователь с таким Email не найден", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        String hashedPasswordFromDatabase = myDbManager.getPasswordForUserId(userId);
+                        if (CheckPasswordHashing(inputPassword, hashedPasswordFromDatabase)) {
+                            // Пароли совпадают
+                            Toast.makeText(root.getContext(), "Вы успешно авторизовались", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Registration_Window.this, Main_Menu.class);
+                            intent.putExtra("UserId", userId); // Передаем _id пользователя
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            // Пароли не совпадают
+                            Toast.makeText(root.getContext(), "Неправильный пароль", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } finally {
+                    myDbManager.CloseDb();
+                }
             }
         });
         dialog.show();
-
     }
+
 
     private void showRegisterWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -125,6 +145,7 @@ public class Registration_Window extends AppCompatActivity {
         });
 
         dialog.setPositiveButton("Подтвердить", new DialogInterface.OnClickListener() {
+
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
                 if (TextUtils.isEmpty(email.getText().toString())){
@@ -158,14 +179,33 @@ public class Registration_Window extends AppCompatActivity {
                 }
                 else{
                     //Если все подходит, то регистрируем пользователя в базу
-                    myDbManager.insertToDbUsers(email.getText().toString(), password.getText().toString(), name.getText().toString(), phone.getText().toString());
-                    Toast.makeText(root.getContext(), "Пользователь успешно зарегистрирован", Toast.LENGTH_SHORT).show();
+                    try{
+                        String hashedPassword =  PasswordHashing(password.getText().toString());
+                        myDbManager.insertToDbUsers(email.getText().toString(), hashedPassword, name.getText().toString(), phone.getText().toString());
+                        Toast.makeText(root.getContext(), "Пользователь успешно зарегистрирован", Toast.LENGTH_SHORT).show();
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                        Toast.makeText(root.getContext(), "Ошибка при хешировании", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
                 myDbManager.CloseDb();
             }
+
         });
     dialog.show();
     }
+    private String PasswordHashing(String password) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] hash = md.digest(password.getBytes());
+        return android.util.Base64.encodeToString(hash, android.util.Base64.DEFAULT);
+    }
 
+    private boolean CheckPasswordHashing(String userInputPassword, String hashedPasswordFromDatabase) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] userInputHash = md.digest(userInputPassword.getBytes());
+        String userInputHashBase64 = android.util.Base64.encodeToString(userInputHash, android.util.Base64.DEFAULT);
+        return userInputHashBase64.equals(hashedPasswordFromDatabase);
+    }
 
 }
