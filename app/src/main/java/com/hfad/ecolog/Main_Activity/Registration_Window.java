@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.hfad.ecolog.DataBase.MyDbManager;
+import com.hfad.ecolog.DataBase.MyDbManagerUsers;
 import com.hfad.ecolog.R;
 
 import java.security.MessageDigest;
@@ -28,7 +28,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Registration_Window extends AppCompatActivity {
     Button ButtonEnter, ButtonRegistration;
-    MyDbManager myDbManager;
+    MyDbManagerUsers myDbManagerUsers;
     ConstraintLayout root;
     private SharedPreferences preferences;
 
@@ -41,7 +41,7 @@ public class Registration_Window extends AppCompatActivity {
         ButtonRegistration = findViewById(R.id.ButtonRegistration);
         root = findViewById(R.id.root_element);
 
-        myDbManager = new MyDbManager(this);
+        myDbManagerUsers = new MyDbManagerUsers(this);
 
         ButtonRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,17 +100,17 @@ public class Registration_Window extends AppCompatActivity {
                     return;
                 }
 
-                myDbManager.OpenDb();
+                myDbManagerUsers.OpenDb();
                 String inputEmail = email.getText().toString();
                 String inputPassword = password.getText().toString();
-                String userId = myDbManager.getUserIdForEmail(inputEmail);
+                String userId = myDbManagerUsers.getUserIdForEmail(inputEmail);
 
                 if (TextUtils.isEmpty(userId)){
                     // Пользователь с указанным email не найден или пароль отсутствует
                     Toast.makeText(root.getContext(), "Пользователь с таким Email не найден", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    String hashedPasswordFromDatabase = myDbManager.getPasswordForUserId(userId);
+                    String hashedPasswordFromDatabase = myDbManagerUsers.getPasswordForUserId(userId);
                     try {
                         if (CheckPasswordHashing(inputPassword, hashedPasswordFromDatabase)) {
                             // Пароли совпадают
@@ -133,7 +133,7 @@ public class Registration_Window extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                 }
-                myDbManager.CloseDb();
+                myDbManagerUsers.CloseDb();
             }
         });
         dialog.show();
@@ -189,15 +189,15 @@ public class Registration_Window extends AppCompatActivity {
                     return;
                 }
 
-                myDbManager.OpenDb();
-                if(myDbManager.checkUserRegistrationExists(email.getText().toString())){
+                myDbManagerUsers.OpenDb();
+                if(myDbManagerUsers.checkUserRegistrationExists(email.getText().toString())){
                     Toast.makeText(root.getContext(), "Пользователь с таким Email уже зарегистрирован", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     //Если все подходит, то регистрируем пользователя в базу
                     try{
                         String hashedPassword =  PasswordHashing(password.getText().toString());
-                        myDbManager.insertToDbUsers(email.getText().toString(), hashedPassword, name.getText().toString(), phone.getText().toString());
+                        myDbManagerUsers.insertToDbUsers(email.getText().toString(), hashedPassword, name.getText().toString(), phone.getText().toString());
                         Toast.makeText(root.getContext(), "Пользователь успешно зарегистрирован", Toast.LENGTH_SHORT).show();
                     } catch (NoSuchAlgorithmException e) {
                         e.printStackTrace();
@@ -205,7 +205,7 @@ public class Registration_Window extends AppCompatActivity {
                     }
 
                 }
-                myDbManager.CloseDb();
+                myDbManagerUsers.CloseDb();
             }
 
         });
@@ -218,7 +218,6 @@ public class Registration_Window extends AppCompatActivity {
         return android.util.Base64.encodeToString(hash, android.util.Base64.DEFAULT);
     }
 
-
     private boolean CheckPasswordHashing(String userInputPassword, String hashedPasswordFromDatabase) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] userInputHash = md.digest(userInputPassword.getBytes());
@@ -228,7 +227,5 @@ public class Registration_Window extends AppCompatActivity {
 
     private void InitAuthentication(){
         preferences = getSharedPreferences("LogAndPass", MODE_PRIVATE);
-
-
     }
 }

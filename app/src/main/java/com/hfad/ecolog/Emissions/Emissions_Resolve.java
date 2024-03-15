@@ -7,13 +7,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.hfad.ecolog.DataBase.MyDbManager;
+import com.hfad.ecolog.DataBase.MyDbManagerUsers;
 import com.hfad.ecolog.Main_Activity.Main_Menu;
 import com.hfad.ecolog.R;
 
 public class Emissions_Resolve extends AppCompatActivity  {
     TextView CarView;
-    private MyDbManager myDbManager;
+    private MyDbManagerUsers myDbManagerUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +27,16 @@ public class Emissions_Resolve extends AppCompatActivity  {
         float E_Car = intent.getFloatExtra("E_Car", defaultValue);
         String UserId = intent.getStringExtra("UserId");
 
-        myDbManager = new MyDbManager(this);
+        myDbManagerUsers = new MyDbManagerUsers(this);
 
         float E_Resolve = E_Communal + E_Car;
         CarView.append(Float.toString(E_Resolve));
 
-        myDbManager.OpenDb();
-        myDbManager.insertToDbEmissions(UserId, E_Communal, E_Car, E_Resolve);
+        myDbManagerUsers.OpenDb();
+        myDbManagerUsers.insertToDbEmissions(UserId, E_Communal, E_Car, E_Resolve);
 
 
-        myDbManager.CloseDb();
+        myDbManagerUsers.CloseDb();
     }
 
     public void onClickButtonRecalculate(View view){

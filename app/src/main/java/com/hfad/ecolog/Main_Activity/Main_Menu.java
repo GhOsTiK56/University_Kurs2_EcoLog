@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.hfad.ecolog.DataBase.MyDbManager;
+import com.hfad.ecolog.DataBase.MyDbManagerUsers;
 import com.hfad.ecolog.Drawer.Drawer_Manager;
 import com.hfad.ecolog.Drawer.Image_Button_Click_Listener;
 import com.hfad.ecolog.Drawer.Navigation_Item_Click_Listener;
@@ -29,7 +29,7 @@ public class Main_Menu extends AppCompatActivity {
     ImageButton ButtonDrawerToggle;
     NavigationView navigationView;
     TextView textEmissions;
-    MyDbManager myDbManager;
+    MyDbManagerUsers myDbManagerUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +50,10 @@ public class Main_Menu extends AppCompatActivity {
 
 
         //Вывод из БД данных
-        myDbManager = new MyDbManager(this);
-        myDbManager.OpenDb();
+        myDbManagerUsers = new MyDbManagerUsers(this);
+        myDbManagerUsers.OpenDb();
 
-        float E_Resolve =  myDbManager.getEResolveForUser(UserId);
+        float E_Resolve =  myDbManagerUsers.getEResolveForUser(UserId);
 
         textEmissions.setText(String.valueOf(E_Resolve));
 
@@ -64,7 +64,7 @@ public class Main_Menu extends AppCompatActivity {
         TextView textUserName = headerView.findViewById(R.id.textUserName);
 
 
-        myDbManager.CloseDb();
+        myDbManagerUsers.CloseDb();
         imageUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
