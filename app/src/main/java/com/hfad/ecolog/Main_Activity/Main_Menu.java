@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.hfad.ecolog.DataBase.MyDbManagerUsers;
+import com.hfad.ecolog.DataBaseUsers.MyDbManagerUsers;
 import com.hfad.ecolog.Drawer.Drawer_Manager;
 import com.hfad.ecolog.Drawer.Image_Button_Click_Listener;
 import com.hfad.ecolog.Drawer.Navigation_Item_Click_Listener;

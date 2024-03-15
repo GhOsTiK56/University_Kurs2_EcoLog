@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.hfad.ecolog.DataBase.MyDbManagerUsers;
+import com.hfad.ecolog.DataBaseUsers.MyDbManagerUsers;
 import com.hfad.ecolog.R;
 
 import java.security.MessageDigest;

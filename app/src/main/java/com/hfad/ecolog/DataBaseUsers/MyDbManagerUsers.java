@@ -9,7 +9,7 @@ ReadFromDb - Читает базу данных и возвращает в ви�
 CloseDb - Закрывает базу данных.
 DestroyDb - Уничтожает полностью всю базу данных со всеми значениями.
 */
-package com.hfad.ecolog.DataBase;
+package com.hfad.ecolog.DataBaseUsers;
 
 import android.content.ContentValues;
 import android.content.Context;

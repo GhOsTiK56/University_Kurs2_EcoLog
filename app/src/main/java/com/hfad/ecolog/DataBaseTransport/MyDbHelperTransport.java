@@ -1,8 +1,10 @@
-package com.hfad.ecolog.DataBase;
+package com.hfad.ecolog.DataBaseTransport;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.hfad.ecolog.DataBaseTransport.MyConstantsTransport;
 
 public class MyDbHelperTransport extends SQLiteOpenHelper {
 

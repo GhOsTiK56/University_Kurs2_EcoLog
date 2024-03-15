@@ -5,7 +5,7 @@ MyDbHelper - конструктор, при вызове создается БД
 onCreate - создает таблицу базы данных.
 onUpgrade - обновляет БД.
 */
-package com.hfad.ecolog.DataBase;
+package com.hfad.ecolog.DataBaseUsers;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

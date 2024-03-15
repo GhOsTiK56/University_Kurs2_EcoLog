@@ -1,4 +1,4 @@
-package com.hfad.ecolog.DataBase;
+package com.hfad.ecolog.DataBaseTransport;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,7 +7,6 @@ public class MyDbManagerTransport {
     private final Context context;
     private final MyDbHelperTransport myDbHelperTransport;
     private SQLiteDatabase db;
-
 
     public MyDbManagerTransport(Context context){
         this.context = context;

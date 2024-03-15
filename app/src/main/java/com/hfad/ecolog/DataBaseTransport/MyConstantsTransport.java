@@ -1,4 +1,6 @@
-package com.hfad.ecolog.DataBase;
+package com.hfad.ecolog.DataBaseTransport;
+
+import com.hfad.ecolog.DataBaseUsers.MyConstantsUsers;
 
 public class MyConstantsTransport {
     public static final String TRANSPORT_TABLE_NAME = "Transport";

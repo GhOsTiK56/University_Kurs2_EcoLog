@@ -2,7 +2,7 @@
 Класс MyConstants прописывает поля для базы данных.
 В этом классе создается база данных и поля, а так же создаются константы с обозначениями.
 */
-package com.hfad.ecolog.DataBase;
+package com.hfad.ecolog.DataBaseUsers;
 
 public class MyConstantsUsers {
     public static final String USERS_TABLE_NAME = "Users";

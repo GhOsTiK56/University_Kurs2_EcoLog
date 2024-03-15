@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.hfad.ecolog.DataBase.MyDbManagerUsers;
+import com.hfad.ecolog.DataBaseUsers.MyDbManagerUsers;
 import com.hfad.ecolog.Main_Activity.Main_Menu;
 import com.hfad.ecolog.R;
 
