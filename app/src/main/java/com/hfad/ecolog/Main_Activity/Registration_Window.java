@@ -7,6 +7,7 @@ package com.hfad.ecolog.Main_Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -29,11 +30,13 @@ public class Registration_Window extends AppCompatActivity {
     Button ButtonEnter, ButtonRegistration;
     MyDbManager myDbManager;
     ConstraintLayout root;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_window);
+
         ButtonEnter = findViewById(R.id.ButtonEnter);
         ButtonRegistration = findViewById(R.id.ButtonRegistration);
         root = findViewById(R.id.root_element);
@@ -52,6 +55,8 @@ public class Registration_Window extends AppCompatActivity {
                 showSignInWindow();
             }
         });
+
+        InitAuthentication();
     }
 
     private void showSignInWindow() {
@@ -65,6 +70,15 @@ public class Registration_Window extends AppCompatActivity {
 
         final TextInputEditText email = show_sign_in_window.findViewById(R.id.EmailField);
         final TextInputEditText password = show_sign_in_window.findViewById(R.id.PasswordField);
+
+        //Проверка наличия сохраненных данных в SharedPrefereces
+        String savedEmail = preferences.getString("Email", "");
+        String savedPassword = preferences.getString("Password", "");
+
+        if (!TextUtils.isEmpty(savedEmail) && !TextUtils.isEmpty(savedPassword)){
+            email.setText(savedEmail);
+            password.setText(savedPassword);
+        }
 
         dialog.setNegativeButton("Отменить", new DialogInterface.OnClickListener() {
             @Override
@@ -89,17 +103,15 @@ public class Registration_Window extends AppCompatActivity {
                 myDbManager.OpenDb();
                 String inputEmail = email.getText().toString();
                 String inputPassword = password.getText().toString();
-                try {
+                String userId = myDbManager.getUserIdForEmail(inputEmail);
 
-                    String userId = myDbManager.getUserIdForEmail(inputEmail);
-
-
-                    if (TextUtils.isEmpty(userId)){
-                        // Пользователь с указанным email не найден или пароль отсутствует
-                        Toast.makeText(root.getContext(), "Пользователь с таким Email не найден", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        String hashedPasswordFromDatabase = myDbManager.getPasswordForUserId(userId);
+                if (TextUtils.isEmpty(userId)){
+                    // Пользователь с указанным email не найден или пароль отсутствует
+                    Toast.makeText(root.getContext(), "Пользователь с таким Email не найден", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    String hashedPasswordFromDatabase = myDbManager.getPasswordForUserId(userId);
+                    try {
                         if (CheckPasswordHashing(inputPassword, hashedPasswordFromDatabase)) {
                             // Пароли совпадают
                             Toast.makeText(root.getContext(), "Вы успешно авторизовались", Toast.LENGTH_SHORT).show();
@@ -107,21 +119,25 @@ public class Registration_Window extends AppCompatActivity {
                             intent.putExtra("UserId", userId); // Передаем _id пользователя
                             startActivity(intent);
                             finish();
+
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("Email", email.getText().toString());
+                            editor.putString("Password", password.getText().toString());
+                            editor.apply();
+
                         } else {
                             // Пароли не совпадают
                             Toast.makeText(root.getContext(), "Неправильный пароль", Toast.LENGTH_SHORT).show();
                         }
+                    } catch (NoSuchAlgorithmException e) {
+                        throw new RuntimeException(e);
                     }
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                } finally {
-                    myDbManager.CloseDb();
                 }
+                myDbManager.CloseDb();
             }
         });
         dialog.show();
     }
-
 
     private void showRegisterWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -195,11 +211,13 @@ public class Registration_Window extends AppCompatActivity {
         });
     dialog.show();
     }
+
     private String PasswordHashing(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] hash = md.digest(password.getBytes());
         return android.util.Base64.encodeToString(hash, android.util.Base64.DEFAULT);
     }
+
 
     private boolean CheckPasswordHashing(String userInputPassword, String hashedPasswordFromDatabase) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -208,4 +226,9 @@ public class Registration_Window extends AppCompatActivity {
         return userInputHashBase64.equals(hashedPasswordFromDatabase);
     }
 
+    private void InitAuthentication(){
+        preferences = getSharedPreferences("LogAndPass", MODE_PRIVATE);
+
+
+    }
 }
