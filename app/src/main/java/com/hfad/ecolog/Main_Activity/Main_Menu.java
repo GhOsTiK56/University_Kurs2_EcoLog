@@ -45,7 +45,7 @@ public class Main_Menu extends AppCompatActivity {
         String UserId = intent.getStringExtra("UserId");
 
         ButtonDrawerToggle.setOnClickListener(new Image_Button_Click_Listener(drawerManager));
-        navigationView.setNavigationItemSelectedListener(new Navigation_Item_Click_Listener(this, UserId));
+        navigationView.setNavigationItemSelectedListener(new Navigation_Item_Click_Listener(this, UserId, drawerLayout));
 
 
 

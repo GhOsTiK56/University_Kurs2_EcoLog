@@ -12,7 +12,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 public class Drawer_Manager {
 
     private final DrawerLayout drawerLayout; //Хранит ссылку на экземпляр DrawerLayout с которым будет работать Drawer_Manager
-
     public Drawer_Manager(DrawerLayout drawerLayout){ //Конструктор, который принимает экземпляр DrawerLayout и сохраняет его в приватном поле drawerLayout
         this.drawerLayout = drawerLayout;
     }
@@ -24,4 +23,5 @@ public class Drawer_Manager {
     public void CloseDrawer(){ //Отвечает за закрытие бокового меню
         drawerLayout.closeDrawer(GravityCompat.START);
     }
+
 }
