@@ -28,7 +28,7 @@ public class Main_Menu extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageButton ButtonDrawerToggle;
     NavigationView navigationView;
-    TextView textEmissions;
+    TextView textEmissions, textUserName;
     MyDbManagerUsers myDbManagerUsers;
 
     @Override
@@ -39,6 +39,7 @@ public class Main_Menu extends AppCompatActivity {
         ButtonDrawerToggle = findViewById(R.id.ButtonDrawerToggle);
         navigationView = findViewById(R.id.navigationView);
         textEmissions = findViewById(R.id.textEmissions);
+        textUserName = findViewById(R.id.textViewName);
 
         drawerManager = new Drawer_Manager(drawerLayout);
         Intent intent = getIntent();
@@ -57,6 +58,8 @@ public class Main_Menu extends AppCompatActivity {
 
         textEmissions.setText(String.valueOf(E_Resolve));
 
+        String userName= myDbManagerUsers.getUserName(UserId);
+        textUserName.setText(userName);
 
         //Если жмакаем на фотку то выведется надпись
         View headerView = navigationView.getHeaderView(0);

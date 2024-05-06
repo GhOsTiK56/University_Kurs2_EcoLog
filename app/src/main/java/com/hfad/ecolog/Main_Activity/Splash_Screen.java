@@ -17,11 +17,13 @@ public class Splash_Screen extends AppCompatActivity {
     private final long splashTime = 2000;
     private final boolean splashActive = true;
     private final boolean paused = false;
+    //ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+        //imageView = findViewById(R.id.imageView2);
         Thread thread = new Thread() { // Создается поток выполнения, для выболнения ассинхронной работы, чтобы не блочить основной поток, здесь ожидание времени "ожидания" заставки
             public void run(){
                 try { // Если здесь возникает исключение, то оно просто игнорируестя

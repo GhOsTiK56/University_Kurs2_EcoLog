@@ -5,11 +5,14 @@
     <string name="ButtonRecalculate">Recalculate</string>
     <string name="ButtonMainMenu">Main menu</string>
     <string name="ButtonEnter">Войти</string>
-    <string name="ButtonRegistration">Зарегистрироваться</string>
+    <string name="ButtonRegistration">Регистрация</string>
     <string name="EditEmail">Введите Email</string>
     <string name="EditPassword">Введите пароль</string>
     <string name="EditName">Введите имя</string>
     <string name="EditTele">Введите номер телефона</string>
+
+    <string name="Splash1">Приветствую вас в нашем приложении Ecolog!</string>
+    <string name="Splash2">Давайте вместе сделаем шаг к более устойчивому будущему! Начнем свой путь к более экологичной жизни.</string>
 
 
 

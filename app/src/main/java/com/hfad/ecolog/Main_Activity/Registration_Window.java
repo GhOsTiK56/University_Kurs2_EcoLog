@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -31,12 +32,14 @@ public class Registration_Window extends AppCompatActivity {
     MyDbManagerUsers myDbManagerUsers;
     ConstraintLayout root;
     private SharedPreferences preferences;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_window);
 
+        imageView = findViewById(R.id.imageRegistrationWindow);
         ButtonEnter = findViewById(R.id.ButtonEnter);
         ButtonRegistration = findViewById(R.id.ButtonRegistration);
         root = findViewById(R.id.root_element);

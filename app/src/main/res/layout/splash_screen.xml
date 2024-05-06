@@ -8,23 +8,35 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="270dp"
-        android:layout_height="98dp"
-        android:text="@string/TextPresentable"
+        android:layout_width="296dp"
+        android:layout_height="97dp"
+        android:fontFamily="@font/filsonproregular"
+        android:gravity="center"
+        android:text="@string/Splash1"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.758"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.695" />
+        app:layout_constraintVertical_bias="0.263" />
 
-    <ImageView
-        android:id="@+id/Image1"
-        android:layout_width="400sp"
-        android:layout_height="300sp"
+    <TextView
+        android:layout_width="298dp"
+        android:layout_height="78dp"
+        android:fontFamily="@font/filsonproregular"
+        android:gravity="center"
+        android:text="@string/Splash2"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image1" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

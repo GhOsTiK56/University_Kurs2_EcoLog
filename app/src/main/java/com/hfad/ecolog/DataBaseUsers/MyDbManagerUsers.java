@@ -140,4 +140,39 @@ public class MyDbManagerUsers {
     public void DestroyDb(){ //Полностью удаляем всю базу данных
         db.delete(MyConstantsUsers.USERS_TABLE_NAME, null, null); // полностью очистили таблицу
     }
+
+    public String getUserName(String userId) {
+        String userName = null;
+        Cursor cursor = null;
+        try {
+            // Определение столбцов, которые вы хотите получить из запроса
+            String[] columns = {MyConstantsUsers.NAME};
+            // Условие для выборки записи с определенным идентификатором пользователя
+            String selection = MyConstantsUsers._ID + "=?";
+            // Аргументы для условия выборки (в данном случае идентификатор пользователя)
+            String[] selectionArgs = {userId};
+            // Выполнение запроса к базе данных
+            cursor = db.query(MyConstantsUsers.USERS_TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+            // Проверка наличия результатов и переход к первой записи, если они есть
+            if (cursor != null && cursor.moveToFirst()) {
+                // Получение индекса столбца с именем пользователя
+                int userNameIndex = cursor.getColumnIndex(MyConstantsUsers.NAME);
+                // Проверка наличия такого столбца в результате запроса
+                if (userNameIndex != -1) {
+                    // Получение имени пользователя из текущей записи
+                    userName = cursor.getString(userNameIndex);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Обработка возможных исключений, например, ошибок при выполнении запроса
+        } finally {
+            // Закрытие курсора, чтобы освободить ресурсы
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        // Возвращение имени пользователя или null, если произошла ошибка
+        return userName;
+    }
 }
