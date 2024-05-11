@@ -9,6 +9,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +31,7 @@ public class Main_Menu extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageButton ButtonDrawerToggle;
     NavigationView navigationView;
+    ImageView imageStick;
     TextView textEmissions, textUserName;
     MyDbManagerUsers myDbManagerUsers;
 
@@ -41,6 +44,7 @@ public class Main_Menu extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationView);
         textEmissions = findViewById(R.id.textEmissions);
         textUserName = findViewById(R.id.textViewName);
+        imageStick = findViewById(R.id.imageStick);
 
         drawerManager = new Drawer_Manager(drawerLayout);
         Intent intent = getIntent();
@@ -49,17 +53,15 @@ public class Main_Menu extends AppCompatActivity {
         ButtonDrawerToggle.setOnClickListener(new Image_Button_Click_Listener(drawerManager));
         navigationView.setNavigationItemSelectedListener(new Navigation_Item_Click_Listener(this, UserId, drawerLayout));
 
-
-
         //Вывод из БД данных
         myDbManagerUsers = new MyDbManagerUsers(this);
         myDbManagerUsers.OpenDb();
 
-        float E_Resolve =  myDbManagerUsers.getEResolveForUser(UserId);
+        float E_Resolve = myDbManagerUsers.getEResolveForUser(UserId);
         @SuppressLint("DefaultLocale") String Resolve = String.format("%.2f", E_Resolve);
         textEmissions.setText(String.valueOf(Resolve));
 
-        String userName= myDbManagerUsers.getUserName(UserId);
+        String userName = myDbManagerUsers.getUserName(UserId);
         textUserName.setText(userName);
 
         //Если жмакаем на фотку то выведется надпись
@@ -67,12 +69,49 @@ public class Main_Menu extends AppCompatActivity {
         ImageView imageUserPhoto = headerView.findViewById(R.id.imageUserPhoto);
         TextView textUserName = headerView.findViewById(R.id.textUserName);
 
-
         myDbManagerUsers.CloseDb();
         imageUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Main_Menu.this, textUserName.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        imageStick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation fadeOutImage = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out_image);
+                imageStick.startAnimation(fadeOutImage);
+
+                Animation fadeOutOverlay = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out_overlay);
+                View darkOverlay = findViewById(R.id.darkOverlay);
+                darkOverlay.startAnimation(fadeOutOverlay);
+
+                fadeOutImage.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {}
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        imageStick.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {}
+                });
+
+                fadeOutOverlay.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {}
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        darkOverlay.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {}
+                });
             }
         });
     }

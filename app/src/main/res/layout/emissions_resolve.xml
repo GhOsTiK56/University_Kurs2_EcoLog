@@ -4,12 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Emissions.Emissions_Resolve">
+    tools:context=".Emissions.Emissions_Resolve"
+    android:background="@drawable/emissionresolve">
+
+    <TextView
+        android:id="@+id/Text_Third"
+        android:layout_width="336dp"
+        android:layout_height="120dp"
+        android:fontFamily="@font/filsonproregular"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="Ваш углеродный след составляет:"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.166" />
 
     <TextView
         android:id="@+id/ResolveView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:fontFamily="@font/filsonproregular"
+        android:textStyle="bold"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -18,26 +40,17 @@
         app:layout_constraintVertical_bias="0.35" />
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="248dp"
-        android:layout_marginBottom="252dp"
-        android:onClick="onClickButtonRecalculate"
-        android:text="@string/ButtonRecalculate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
         android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="252dp"
-        android:text="@string/ButtonMainMenu"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/filsonproregular"
         android:onClick="onClickButtonMainMenu"
+        android:text="@string/ButtonMainMenu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toEndOf="@+id/button5" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.651" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

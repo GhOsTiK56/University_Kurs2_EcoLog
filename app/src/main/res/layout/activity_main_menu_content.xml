@@ -31,6 +31,7 @@
             tools:layout_editor_absoluteY="11dp" />
     </Toolbar>
 
+
     <TextView
         android:id="@+id/textEmissions"
         android:layout_width="wrap_content"
@@ -144,5 +145,23 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewSovet"
         app:layout_constraintVertical_bias="0.26" />
 
+    <View
+        android:id="@+id/darkOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imageStick"
+        android:layout_width="374dp"
+        android:layout_height="503dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar3"
+        app:layout_constraintVertical_bias="0.991"
+        app:srcCompat="@drawable/stick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
