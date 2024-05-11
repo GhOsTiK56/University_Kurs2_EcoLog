@@ -1,9 +1,13 @@
 package com.hfad.ecolog.Emissions;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +15,11 @@ import com.hfad.ecolog.R;
 
 public class Emissions_Communal extends AppCompatActivity {
     EditText Electricity, Household, NaturalGas, Water;
+    ImageView imageStick;
+    private View darkOverlay;
+    private static final String EMISSIONS_COMMUNAL_PREFS_NAME = "EmissionsCommunalPrefsFile";
+    private static final String EMISSIONS_COMMUNAL_IMAGE_STICK_SHOWN_KEY = "EmissionsCommunalImageStickShown";
+    private static final String EMISSIONS_COMMUNAL_DARK_OVERLAY_SHOWN_KEY = "EmissionsCommunalDarkOverlayShown";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +30,65 @@ public class Emissions_Communal extends AppCompatActivity {
         Household = findViewById(R.id.Household);
         NaturalGas = findViewById(R.id.NaturalGas);
         Water = findViewById(R.id.Water);
+        imageStick = findViewById(R.id.imageStick);
+        darkOverlay = findViewById(R.id.darkOverlay);
+
+        // Получение состояния показа из SharedPreferences
+        SharedPreferences settings = getSharedPreferences(EMISSIONS_COMMUNAL_PREFS_NAME, 0);
+        boolean imageStickShown = settings.getBoolean(EMISSIONS_COMMUNAL_IMAGE_STICK_SHOWN_KEY, false);
+        boolean darkOverlayShown = settings.getBoolean(EMISSIONS_COMMUNAL_DARK_OVERLAY_SHOWN_KEY, false);
+
+        // Если картинка была показана ранее, делаем ее невидимой
+        if (imageStickShown) {
+            imageStick.setVisibility(View.INVISIBLE);
+        }
+
+        // Если darkOverlay был показан ранее, делаем его невидимым
+        if (darkOverlayShown) {
+            darkOverlay.setVisibility(View.INVISIBLE);
+        }
+
+        imageStick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation fadeOutImage = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out_image);
+                imageStick.startAnimation(fadeOutImage);
+
+                Animation fadeOutOverlay = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out_overlay);
+                darkOverlay.startAnimation(fadeOutOverlay);
+
+                fadeOutImage.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {}
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        imageStick.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {}
+                });
+
+                fadeOutOverlay.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {}
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        darkOverlay.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {}
+                });
+
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putBoolean(EMISSIONS_COMMUNAL_IMAGE_STICK_SHOWN_KEY, true);
+                editor.putBoolean(EMISSIONS_COMMUNAL_DARK_OVERLAY_SHOWN_KEY, true);
+                editor.apply();
+            }
+        });
     }
     public void onClickButton(View view){
 

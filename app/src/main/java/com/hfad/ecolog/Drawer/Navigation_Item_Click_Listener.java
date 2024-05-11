@@ -5,11 +5,8 @@ onNavigationItemSelected - Получает ссылку на нажимаемы
 */
 package com.hfad.ecolog.Drawer;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -39,7 +36,7 @@ public class Navigation_Item_Click_Listener implements NavigationView.OnNavigati
             Intent intent = new Intent(context, Emissions_Communal.class);
             intent.putExtra("UserId", UserId);
             drawerManager.CloseDrawer();
-            startActivity(context, intent, new Bundle());
+            context.startActivity(intent);
         }
 
         if (itemId == R.id.navStatistics){

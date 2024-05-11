@@ -7,6 +7,7 @@ package com.hfad.ecolog.Main_Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -32,8 +33,13 @@ public class Main_Menu extends AppCompatActivity {
     ImageButton ButtonDrawerToggle;
     NavigationView navigationView;
     ImageView imageStick;
+    private View darkOverlay;
     TextView textEmissions, textUserName;
     MyDbManagerUsers myDbManagerUsers;
+    private static final String MAIN_MENU_PREFS_NAME = "MainMenuPrefsFile";
+    private static final String MAIN_MENU_IMAGE_STICK_SHOWN_KEY = "MainMenuImageStickShown";
+    private static final String MAIN_MENU_DARK_OVERLAY_SHOWN_KEY = "MainMenuDarkOverlayShown";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,22 @@ public class Main_Menu extends AppCompatActivity {
         textEmissions = findViewById(R.id.textEmissions);
         textUserName = findViewById(R.id.textViewName);
         imageStick = findViewById(R.id.imageStick);
+        darkOverlay = findViewById(R.id.darkOverlay);
+
+        // Получение состояния показа из SharedPreferences
+        SharedPreferences settings = getSharedPreferences(MAIN_MENU_PREFS_NAME, 0);
+        boolean imageStickShown = settings.getBoolean(MAIN_MENU_IMAGE_STICK_SHOWN_KEY, false);
+        boolean darkOverlayShown = settings.getBoolean(MAIN_MENU_DARK_OVERLAY_SHOWN_KEY, false);
+
+        // Если imageStick был показан ранее, делаем его невидимым
+        if (imageStickShown) {
+            imageStick.setVisibility(View.INVISIBLE);
+        }
+
+        // Если darkOverlay был показан ранее, делаем его невидимым
+        if (darkOverlayShown) {
+            darkOverlay.setVisibility(View.INVISIBLE);
+        }
 
         drawerManager = new Drawer_Manager(drawerLayout);
         Intent intent = getIntent();
@@ -108,10 +130,14 @@ public class Main_Menu extends AppCompatActivity {
                     public void onAnimationEnd(Animation animation) {
                         darkOverlay.setVisibility(View.INVISIBLE);
                     }
-
                     @Override
                     public void onAnimationRepeat(Animation animation) {}
                 });
+
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putBoolean(MAIN_MENU_IMAGE_STICK_SHOWN_KEY, true);
+                editor.putBoolean(MAIN_MENU_DARK_OVERLAY_SHOWN_KEY, true);
+                editor.apply();
             }
         });
     }
