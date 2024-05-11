@@ -6,18 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Emissions.Emissions_Resolve">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_back"
-        android:onClick="onClickButtonBack"
-        android:backgroundTint="@android:color/transparent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/CarView"
+        android:id="@+id/ResolveView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

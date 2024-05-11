@@ -1,5 +1,6 @@
 package com.hfad.ecolog.Emissions;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,14 +13,14 @@ import com.hfad.ecolog.Main_Activity.Main_Menu;
 import com.hfad.ecolog.R;
 
 public class Emissions_Resolve extends AppCompatActivity  {
-    TextView CarView;
+    TextView ResolveView;
     private MyDbManagerUsers myDbManagerUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.emissions_resolve);
-        CarView = findViewById(R.id.CarView);
+        ResolveView = findViewById(R.id.ResolveView);
 
         Intent intent = getIntent();
         float defaultValue = 0.0F;
@@ -30,7 +31,8 @@ public class Emissions_Resolve extends AppCompatActivity  {
         myDbManagerUsers = new MyDbManagerUsers(this);
 
         float E_Resolve = E_Communal + E_Car;
-        CarView.append(Float.toString(E_Resolve));
+        @SuppressLint("DefaultLocale") String Resolve = String.format("%.2f", E_Resolve);
+        ResolveView.append(String.valueOf(Resolve));
 
         myDbManagerUsers.OpenDb();
         myDbManagerUsers.insertToDbEmissions(UserId, E_Communal, E_Car, E_Resolve);
@@ -47,12 +49,6 @@ public class Emissions_Resolve extends AppCompatActivity  {
 
     public void onClickButtonMainMenu(View view){
         Intent intent =  new Intent(this, Main_Menu.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void onClickButtonBack(View view){
-        Intent intent =  new Intent(this, Emissions_Car.class);
         startActivity(intent);
         finish();
     }

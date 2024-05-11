@@ -4,64 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Emissions.Emissions_Car">
+    tools:context=".Emissions.Emissions_Car"
+    android:background="@drawable/emissioncarbackground">
 
-    <Button
-        android:id="@+id/Sum_Button"
+    <TextView
+        android:id="@+id/textStage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="168dp"
-        android:layout_marginBottom="204dp"
-        android:onClick="onClickButton"
-        android:text="@string/ButtonContinue"
+        android:fontFamily="@font/filsonproregular"
+        android:text="Этап 2"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_back"
-        android:onClick="onClickButtonBack"
-        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/Text_Third"
+        android:layout_width="336dp"
+        android:layout_height="120dp"
+        android:fontFamily="@font/filsonproregular"
+        android:gravity="center"
+        android:text="@string/Text_4"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.129" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/filsonproregular"
+        android:gravity="center"
+        android:text="Количество километров, пройденных в среднем за день"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Kilometrs"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.377" />
 
     <EditText
         android:id="@+id/Kilometrs"
-        android:layout_width="227dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="108dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:ems="10"
+        android:fontFamily="@font/filsonproregular"
         android:inputType="number"
-        android:hint="Введите км"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.919"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.383" />
 
     <EditText
         android:id="@+id/Days"
-        android:layout_width="229dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="268dp"
-        android:layout_marginEnd="104dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:ems="10"
+        android:fontFamily="@font/filsonproregular"
         android:inputType="number"
-        android:hint="Введите кол-во дней"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="92dp"
-        android:text="@string/ButtonMainMenu"
-        android:onClick="onClickButtonMainMenu"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.919"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.597" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/filsonproregular"
+        android:gravity="center"
+        android:text="Количество дней использования автомобиля в среднем в неделю"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Days"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.611" />
+
+    <Button
+        android:id="@+id/Sum_Button"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/filsonproregular"
+        android:onClick="onClickButton"
+        android:text="@string/ButtonContinue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.919" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

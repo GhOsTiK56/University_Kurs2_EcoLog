@@ -12,9 +12,6 @@
     <include
         layout="@layout/activity_main_menu_content"/>
 
-
-
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="260dp"

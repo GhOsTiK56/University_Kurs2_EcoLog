@@ -7,7 +7,6 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.hfad.ecolog.Main_Activity.Main_Menu;
 import com.hfad.ecolog.R;
 
 public class Emissions_Communal extends AppCompatActivity {
@@ -65,18 +64,6 @@ public class Emissions_Communal extends AppCompatActivity {
         Intent intent = new Intent(this, Emissions_Car.class);
         intent.putExtra("E_Communal", Communal);
         intent.putExtra("UserId", UserId);
-        startActivity(intent);
-        finish();
-    }
-
-    public void onClickButtonMainMenu(View view){
-        Intent intent =  new Intent(this, Main_Menu.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void onClickButtonBack(View view){
-        Intent intent =  new Intent(this, Main_Menu.class); //Поправить кнопку назад
         startActivity(intent);
         finish();
     }

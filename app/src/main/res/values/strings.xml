@@ -10,15 +10,17 @@
     <string name="EditPassword">Введите пароль</string>
     <string name="EditName">Введите имя</string>
     <string name="EditTele">Введите номер телефона</string>
-
+    <string name="MenuSLed">Ваш углеродный след за последний месяц составил:</string>
+    <string name="MenuRec">Предлагаем вам советы, чтобы поддерживать или улучшить данный уровень:</string>
+    <string name="ButtonSovet">Рекомендации</string>
     <string name="Splash1">Приветствую вас в нашем приложении Ecolog!</string>
     <string name="Splash2">Давайте вместе сделаем шаг к более устойчивому будущему! Начнем свой путь к более экологичной жизни.</string>
+    <string name="Text_4">Теперь перейдем к расчету для вашего личного автомобиля:</string>
 
 
 
     <string name="TextPresentable">Добро пожаловать в EcoLog!!!!</string>
-    <string name="Text_Third">Для начала давайте насчитаем ваше потребление по коммунальным услугам!
-    Введите следующие данные:</string>
+    <string name="Text_Third">Для начала давайте рассчитаем ваше потребление по коммунальным услугам, для этого введите следующие данные:</string>
 
     <string name="Text_Resolve">Сумма ваших выбросов CO2 в тоннах:</string>
     <string name="title_activity_main2">MainActivity2</string>

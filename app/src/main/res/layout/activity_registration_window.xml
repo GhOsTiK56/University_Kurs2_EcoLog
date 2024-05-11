@@ -5,6 +5,7 @@
     android:id="@+id/root_element"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bacgroundregistr"
     tools:context=".Main_Activity.Registration_Window">
 
     <Button

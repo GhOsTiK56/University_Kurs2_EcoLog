@@ -5,6 +5,7 @@ onCreate - Находятся элементы в UI, затем из БД по�
 */
 package com.hfad.ecolog.Main_Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -55,8 +56,8 @@ public class Main_Menu extends AppCompatActivity {
         myDbManagerUsers.OpenDb();
 
         float E_Resolve =  myDbManagerUsers.getEResolveForUser(UserId);
-
-        textEmissions.setText(String.valueOf(E_Resolve));
+        @SuppressLint("DefaultLocale") String Resolve = String.format("%.2f", E_Resolve);
+        textEmissions.setText(String.valueOf(Resolve));
 
         String userName= myDbManagerUsers.getUserName(UserId);
         textUserName.setText(userName);
