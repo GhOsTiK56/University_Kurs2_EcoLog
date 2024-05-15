@@ -105,15 +105,7 @@ public class Emissions_Resolve extends AppCompatActivity  {
 
         myDbManagerUsers.OpenDb();
         myDbManagerUsers.insertToDbEmissions(UserId, E_Communal, E_Car, E_Resolve);
-
-
         myDbManagerUsers.CloseDb();
-    }
-
-    public void onClickButtonRecalculate(View view){
-        Intent intent = new Intent(this, Emissions_Communal.class);
-        startActivity(intent);
-        finish();
     }
 
     public void onClickButtonMainMenu(View view){

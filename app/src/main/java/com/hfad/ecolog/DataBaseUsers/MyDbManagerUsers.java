@@ -133,6 +133,46 @@ public class MyDbManagerUsers {
         return eResolveValue;
     }
 
+    public float getECommunalForUser(String UserId){
+        String[] columns = {MyConstantsUsers.E_COMMUNAL};
+        String selections = MyConstantsUsers._ID + "=?";
+        String[] selectionsArgs = {UserId};
+
+        Cursor cursor = db.query(MyConstantsUsers.USERS_TABLE_NAME, columns, selections, selectionsArgs, null, null, null);
+        float eCommunnalValue = 0.0F;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int eCommunalIndex = cursor.getColumnIndex(MyConstantsUsers.E_COMMUNAL);
+            if (eCommunalIndex != -1) {
+                if (!cursor.isNull(eCommunalIndex)) {
+                    eCommunnalValue = cursor.getFloat(eCommunalIndex);
+                }
+            }
+            cursor.close();
+        }
+        return eCommunnalValue;
+    }
+
+    public float getECarForUser(String UserId){
+        String[] columns = {MyConstantsUsers.E_CAR};
+        String selections = MyConstantsUsers._ID + "=?";
+        String[] selectionsArgs = {UserId};
+
+        Cursor cursor = db.query(MyConstantsUsers.USERS_TABLE_NAME, columns, selections, selectionsArgs, null, null, null);
+        float eCarValue = 0.0F;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int eCarIndex = cursor.getColumnIndex(MyConstantsUsers.E_CAR);
+            if (eCarIndex != -1) {
+                if (!cursor.isNull(eCarIndex)) {
+                    eCarValue = cursor.getFloat(eCarIndex);
+                }
+            }
+            cursor.close();
+        }
+        return eCarValue;
+    }
+
     public void CloseDb(){ //Закрываем базу данных
         myDbHelperUsers.close();
     }
