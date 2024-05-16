@@ -15,6 +15,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.hfad.ecolog.Emissions.Emissions_Communal;
+import com.hfad.ecolog.Main_Activity.Recomendation_Activity;
+import com.hfad.ecolog.Main_Activity.Settings_Activity;
 import com.hfad.ecolog.Main_Activity.StatisticsActivity;
 import com.hfad.ecolog.R;
 
@@ -55,16 +57,18 @@ public class Navigation_Item_Click_Listener implements NavigationView.OnNavigati
 
         if (itemId == R.id.navRecommendations){
             Toast.makeText(context, "Recommendations", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(context, Emissions_Communal.class);
+            Intent intent = new Intent(context, Recomendation_Activity.class);
             intent.putExtra("UserId", UserId);
             drawerManager.CloseDrawer();
+            context.startActivity(intent);
         }
 
         if (itemId == R.id.navSettings){
             Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(context, Emissions_Communal.class);
+            Intent intent = new Intent(context, Settings_Activity.class);
             intent.putExtra("UserId", UserId);
             drawerManager.CloseDrawer();
+            context.startActivity(intent);
         }
         return false;
     }
