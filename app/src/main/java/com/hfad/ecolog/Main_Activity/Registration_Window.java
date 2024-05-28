@@ -206,11 +206,9 @@ public class Registration_Window extends AppCompatActivity {
                         e.printStackTrace();
                         Toast.makeText(root.getContext(), "Ошибка при хешировании", Toast.LENGTH_SHORT).show();
                     }
-
                 }
                 myDbManagerUsers.CloseDb();
             }
-
         });
     dialog.show();
     }

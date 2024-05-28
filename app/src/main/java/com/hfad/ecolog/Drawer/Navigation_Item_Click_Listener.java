@@ -48,24 +48,9 @@ public class Navigation_Item_Click_Listener implements NavigationView.OnNavigati
             context.startActivity(intent);
         }
 
-        if (itemId == R.id.navShared){
-            Toast.makeText(context, "Shared", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(context, Emissions_Communal.class);
-            intent.putExtra("UserId", UserId);
-            drawerManager.CloseDrawer();
-        }
-
         if (itemId == R.id.navRecommendations){
             Toast.makeText(context, "Recommendations", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, Recomendation_Activity.class);
-            intent.putExtra("UserId", UserId);
-            drawerManager.CloseDrawer();
-            context.startActivity(intent);
-        }
-
-        if (itemId == R.id.navSettings){
-            Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(context, Settings_Activity.class);
             intent.putExtra("UserId", UserId);
             drawerManager.CloseDrawer();
             context.startActivity(intent);

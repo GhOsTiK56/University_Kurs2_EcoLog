@@ -65,6 +65,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/filsonproregular"
         android:gravity="center"
+        android:text="User"
         android:textColor="@color/black"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -134,6 +135,7 @@
 
     <Button
         android:id="@+id/button"
+        android:onClick="onClickButtonRec"
         android:layout_width="210dp"
         android:layout_height="46dp"
         android:layout_marginTop="4dp"
@@ -154,14 +156,16 @@
 
     <ImageView
         android:id="@+id/imageStick"
-        android:layout_width="374dp"
-        android:layout_height="503dp"
+        android:layout_width="379dp"
+        android:layout_height="513dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar3"
-        app:layout_constraintVertical_bias="0.991"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.967"
         app:srcCompat="@drawable/stick" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

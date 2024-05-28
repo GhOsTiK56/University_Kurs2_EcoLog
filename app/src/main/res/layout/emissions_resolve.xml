@@ -7,6 +7,17 @@
     tools:context=".Emissions.Emissions_Resolve"
     android:background="@drawable/emissionresolve">
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Text_Third"
+        app:layout_constraintVertical_bias="0.086"
+        app:srcCompat="@drawable/rectangle" />
+
     <TextView
         android:id="@+id/Text_Third"
         android:layout_width="336dp"
@@ -28,21 +39,23 @@
         android:id="@+id/ResolveView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:fontFamily="@font/filsonproregular"
-        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="1.234"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintVertical_bias="0.396" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="140dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:fontFamily="@font/filsonproregular"
         android:onClick="onClickButtonMainMenu"
         android:text="@string/ButtonMainMenu"
@@ -51,7 +64,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.651" />
+        app:layout_constraintVertical_bias="0.868" />
 
     <View
         android:id="@+id/darkOverlay"
@@ -70,5 +83,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/imagestick3" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

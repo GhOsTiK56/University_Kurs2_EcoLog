@@ -25,8 +25,8 @@
         app:layout_constraintVertical_bias="0.136" />
 
     <TextView
-        android:layout_width="376dp"
-        android:layout_height="104dp"
+        android:layout_width="320dp"
+        android:layout_height="111dp"
         android:fontFamily="@font/filsonproregular"
         android:gravity="center"
         android:text="@string/Splash2"

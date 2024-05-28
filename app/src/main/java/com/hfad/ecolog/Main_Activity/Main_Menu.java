@@ -141,4 +141,9 @@ public class Main_Menu extends AppCompatActivity {
             }
         });
     }
+    public void onClickButtonRec(View view){
+        Intent intent = new Intent(this, Recomendation_Activity.class);
+        startActivity(intent);
+        finish();
+    }
 }
