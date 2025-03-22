@@ -1,5 +1,4 @@
-# The EcoLog mobile application
-Welcome to my EcoLog app.
-This application is necessary for those people who are not averse to worrying about the environment.
-This application provides extensive functionality that will help: track your carbon footprint, show detailed statistics, and give personalized recommendations.
-This application was made in the 2nd year for coursework))
+Добро пожаловать в приложение my Ecology. 
+Это приложение необходимо тем людям, которые не прочь побеспокоиться об окружающей среде. 
+Это приложение предоставляет обширный функционал, который поможет: отслеживать свой углеродный след, показывать подробную статистику и давать персональные рекомендации. 
+Это приложение было создана на 2 курсе для курсовой работы))
